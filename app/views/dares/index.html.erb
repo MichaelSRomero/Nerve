@@ -1,0 +1,11 @@
+<div class="dex">
+  <h1>DARES</h1>
+</div>
+
+<div class="dex">
+  <ol>
+    <% Dare.all.each do |dare| %>
+      <li><%= dare.content %></li>
+    <% end %>
+  </ol>
+</div>
