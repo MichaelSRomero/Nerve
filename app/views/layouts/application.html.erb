@@ -10,6 +10,63 @@
   </head>
 
   <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+			<a href="/" class="navbar-brand">NERVE</a>
+			<button class="navbar-toggler"
+					data-toggle="collapse"
+					data-target="#navbarMenu">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarMenu">
+				<ul class="navbar-nav ml-auto">
+					<!-- <li class="nav-item">
+						<a href="/users" class="nav-link">Home</a>
+					</li> -->
+          <% unless @logged_in %>
+            <li class="nav-item">
+              <a href="/login" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+  						<a href="/users/new" class="nav-link">Signup</a>
+  					</li>
+          <% else %>
+            <li class="nav-item">
+              <a href="/users/<%= @logged_in_user.id %>" class="nav-link">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a data-method="DELETE" href="/logout" class="nav-link">Logout</a>
+            </li>
+          <% end %>
+					<!-- <li class="nav-item">
+						<a href="/users/new" class="nav-link">Signup</a>
+					</li> -->
+				</ul>
+			</div>
+		</nav>
+    <!-- Navbar END -->
+
+    <!-- ERROR MESSAGES -->
+    <% if @errors && @errors.any? %>
+      <ul>
+        <% @errors.each do |error_msg| %>
+          <li><%= error_msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <!-- ERROR MESSAGES END -->
+
+    <!-- NOTIFICATION MESSAGES -->
+    <% if @messages && @messages.any? %>
+      <ul>
+        <% @messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <!-- NOTIFICATION MESSAGES END -->
+
     <%= yield %>
   </body>
 </html>
